@@ -1,14 +1,26 @@
 import React from "react";
 
 class Square extends React.Component {
-  constructor(props) {} //이거 생성자이고
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null, //흠 얘는 뭘까?
+      // change: "df",
+    };
+  } //이거 생성자이고
 
   render() {
     return (
       <button
         className="square"
+        //온클릭을 했을 때 x로!
         onClick={() => {
-          console.log("클릭");
+          console.log("클릭"); //
+          // {
+          //   this.props.value = "X";
+          // }
+          // this.value =
+          this.setState({ value: "X" });
         }}
       >
         {this.props.value}
