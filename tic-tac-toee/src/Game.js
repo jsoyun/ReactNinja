@@ -20,7 +20,8 @@ class Square extends React.Component {
         
             // this.setState({x_o :'X'})     
             
-            this.props.onClick()
+            this.props.onClick() //square가 클릭되었을 때 부모 컴포넌트에서 전달된. onClick핸들러 함수
+
          
      
         }
@@ -52,7 +53,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return <Square  
     value ={this.state.squares[i]}
-    onClick ={() => this.handleClick(i)}
+    onClick ={() => this.handleClick(i)} 
     />;
   }
 
