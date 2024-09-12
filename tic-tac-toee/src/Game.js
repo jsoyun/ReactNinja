@@ -1,15 +1,29 @@
 import React from "react";
 
 class Square extends React.Component {
-  constructor(props) {} //이거 생성자이고
+  constructor(props) {
+    super(props);
+    this.props = {
+      x_o : null,
+      // index : props.index
+    }
+  } //이거 생성자이고
+
+
 
   render() {
+
     return (
       <button
         className="square"
-        onClick={() => {
-          console.log("클릭");
-        }}
+        onClick={() =>  //클릭할 때 둘 중 하나가 출력되어야함. 
+        
+            // this.setState({x_o :'X'})     
+            
+            this.props.onClick()
+         
+     
+        }
       >
         {this.props.value}
       </button>
@@ -18,12 +32,30 @@ class Square extends React.Component {
 }
 
 class Board extends React.Component {
-  renderSquare(i) {
-    return <Square value={i} />;
+  constructor(props){
+    super(props);
+    this.state = {
+      squares : Array(9).fill(null) //얘를 공유해서 써야되는데..
+    }
   }
 
+  handleClick (i) {
+    const squares = this.state.squares.slice();
+    squares[i] ='ㅐ';
+    this.setState({squares:squares});
+
+  }
+  renderSquare(i) {
+    return <Square  
+    value ={this.state.squares[i]}
+    onClick ={() => this.handleClick(i)}
+    />;
+  }
+
+
+
   render() {
-    const status = "Next player:" + {};
+    const status = "Next player: X" ;
 
     return (
       <div>
