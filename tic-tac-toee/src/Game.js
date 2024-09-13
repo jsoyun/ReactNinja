@@ -1,29 +1,20 @@
 import React from "react";
 
 class Square extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props = {
-      x_o : null,
-      // index : props.index
-    }
-  } //이거 생성자이고
-
-
-
   render() {
 
     return (
       <button
         className="square"
-        onClick={() =>  //클릭할 때 둘 중 하나가 출력되어야함. 
-        
-            // this.setState({x_o :'X'})     
-            
-            this.props.onClick() //square가 클릭되었을 때 부모 컴포넌트에서 전달된. onClick핸들러 함수
+        onClick={
 
-         
-     
+
+          () => {
+            // this.setState({x_o :'X'})  
+            this.props.onClick()//square가 클릭되었을 때 부모 컴포넌트에서 전달된. onClick핸들러 함수
+            console.log("ㅇㄹ")
+          }
+
         }
       >
         {this.props.value}
@@ -33,34 +24,36 @@ class Square extends React.Component {
 }
 
 class Board extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      squares : Array(9).fill(null), //얘를 공유해서 써야되는데..
-      xIsNext : true,
+      squares: Array(9).fill(null), //얘를 공유해서 써야되는데..
+      xIsNext: true,
     }
   }
 
-  handleClick (i) {
+  handleClick(i) {
+    console.log("상위컴포넌트");
+
     const squares = this.state.squares.slice();
-    squares[i] =this.state.xIsNext ? 'X':'O';
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
-      squares:squares,
-    xIsNext : !this.state.xIsNext
+      squares: squares,
+      xIsNext: !this.state.xIsNext
     });
 
   }
   renderSquare(i) {
-    return <Square  
-    value ={this.state.squares[i]}
-    onClick ={() => this.handleClick(i)} 
+    return <Square
+      value={this.state.squares[i]}
+      onClick={() => this.handleClick(i)}
     />;
   }
 
 
 
   render() {
-    const status = "Next player: X" ;
+    const status = "Next player: X";
 
     return (
       <div>
@@ -85,6 +78,8 @@ class Board extends React.Component {
   }
 }
 
+
+
 class Game extends React.Component {
   render() {
     return (
@@ -100,5 +95,8 @@ class Game extends React.Component {
     );
   }
 }
+
+
+
 
 export default Game;
